@@ -3,15 +3,19 @@ const {connectToMongoDB}=require('./connect');
 const app= express();
 const port =8001;
 const urlRoute=require('./routes/url');
-
+const staticroute=require('./routes/staticroute');
+const path=require('path');
 const URL =require('./models/url');
-
+app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 connectToMongoDB('mongodb://127.0.0.1:27017/short-url')
 .then(()=>console.log("mongodb conncted"));
+app.set("view engine",'ejs');
+app.set("views",path.resolve("./views"));
 
+app.use('/',staticroute);
 app.use("/url",urlRoute);
-app.get('/:shortId',async (req,res)=>{
+app.get('/api/:shortId',async (req,res)=>{
 const shortId=req.params.shortId;
 const entry=await URL.findOneAndUpdate({
     shortId
