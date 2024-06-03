@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <style>
-        body{
+        body{    
+    background-color: rgb(180, 244, 245);
             font-family: 'Times New Roman', Times, serif';
         }
     </style>
@@ -20,7 +21,13 @@
         </form>
     </div>
 <br><br>
-
+<% if (locals.id) { %>
+ <p>URL Generated: http://localhost:8001/url/<%= id %></p>
+<% } %>
+<% if (locals.totalClicks) { %>
+    <p>Totalclicks:<%= totalClicks %></p>
+    <p>Analytics:<%= analytics %></p>
+   <% } %>
     <div><% if (locals.urls) { %>
     <table border="1">
         <tr><th>S no.</th>

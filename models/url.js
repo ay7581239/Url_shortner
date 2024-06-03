@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-
+//schema
 const urlSchema=new mongoose.Schema({
    shortId:{
        type:String,

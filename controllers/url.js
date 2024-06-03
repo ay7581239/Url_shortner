@@ -10,12 +10,12 @@ async function handleGenerateNewShortURL(req,res){
         redirectURL:body.url,
         visitHistory:[],
     });
-    return res.render('home',{id:shortId,});
+    return res.render('home',{id:shortId, });
 }
 async function handleGetAnalytics(req,res){
     const shortId=req.params.shortId;
     const result=await URL.findOne({shortId});
-    return res.json({totalClicks:result.visitHistory.length,
+    return res.render('home',{totalClicks:result.visitHistory.length,
         analytics:result.visitHistory});
 }
 module.exports={
